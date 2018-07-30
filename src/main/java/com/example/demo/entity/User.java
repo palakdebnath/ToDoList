@@ -23,6 +23,8 @@ public class User implements Serializable {
 	@Id
 	private Long userId;
 	
+	private String userName;
+	
 	private String firstName;
 	
 	private String lastName;
@@ -36,6 +38,14 @@ public class User implements Serializable {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getFirstName() {
@@ -56,6 +66,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserEntity [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", taskSet=" + taskSet + "]";
 	}
 }

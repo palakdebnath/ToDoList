@@ -16,3 +16,4 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
 	@Query("from Task where status=:status")
 	List<Task> getAllTaskByStatus(@Param(value = "status") TaskStatus status);
 }
+ 
