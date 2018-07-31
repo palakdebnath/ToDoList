@@ -15,8 +15,8 @@ public class TaskService {
 	@Autowired
 	private TaskDao taskDao;
 
-	public Task createUser(Task task) {
-		return taskDao.createUser(task);
+	public Task createTask(Task task) {
+		return taskDao.createTask(task);
 	}
 	
 	public List<Task> getAllTask() {

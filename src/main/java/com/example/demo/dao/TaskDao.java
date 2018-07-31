@@ -15,7 +15,7 @@ public class TaskDao {
 	@Autowired
 	private TaskRepository taskRepo;
 
-	public Task createUser(Task task) {
+	public Task createTask(Task task) {
 		return taskRepo.save(task);
 	}
 	

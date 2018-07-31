@@ -20,8 +20,8 @@ public class TaskController {
 	private TaskService taskService;
 
 	@PostMapping("/tasks")
-	public Task createUser(@RequestBody Task task) {
-		return taskService.createUser(task);
+	public Task createTask(@RequestBody Task task) {
+		return taskService.createTask(task);
 	}
 	
 	@GetMapping("/tasks")
