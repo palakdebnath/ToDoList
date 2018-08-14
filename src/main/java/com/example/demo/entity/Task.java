@@ -35,6 +35,16 @@ public class Task implements Serializable {
     @JoinColumn(name = "userId", nullable = false)
 	private User assignedUser;
 
+	public Task() { }
+	
+	public Task(Long taskId, String taskName, String description, TaskStatus status) {
+		super();
+		this.taskId = taskId;
+		this.taskName = taskName;
+		this.description = description;
+		this.status = status;
+	}
+
 	public Long getTaskId() {
 		return taskId;
 	}

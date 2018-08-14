@@ -25,7 +25,7 @@ import com.example.demo.entity.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ToDoListApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserControllerIntegrationTest {
+public class TaskControllerIntegrationTest {
 
     @LocalServerPort
 	private int port;
@@ -35,38 +35,40 @@ public class UserControllerIntegrationTest {
 	HttpHeaders headers = new HttpHeaders();
     
 	@Test 
-	public void testGetAllUser() {
+	public void testGetAllTask() {
 		
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
-		ResponseEntity<List<User>> response = restTemplate.exchange(
-				createURLWithPort("/users"),
+		ResponseEntity<List<Task>> response = restTemplate.exchange(
+				createURLWithPort("/tasks"),
 				HttpMethod.GET, 
 				entity, 
-				new ParameterizedTypeReference<List<User>>() {});
+				new ParameterizedTypeReference<List<Task>>() {});
 
-		List<User> users = response.getBody();
-		Assert.assertNotNull(users);
+		List<Task> tasks = response.getBody();
+		Assert.assertNotNull(tasks);
 	}
 	
 
 	@Test 
 	public void testCreateUser() {
-		Task t = new Task(5L, "task", "task description" , TaskStatus.IN_PROGRESS);
+		Task t = new Task(5L, "sampleTask", "Sample task description" , TaskStatus.IN_PROGRESS);
 		Set<Task> taskSet =  new HashSet<>();
 		taskSet.add(t);
 		User user = new User(8L, "johndey", "John", "Dey", taskSet);
 		
-		HttpEntity<User> entity = new HttpEntity<User>(user, headers);
+		t.setAssignedUserId(user);
+		
+		HttpEntity<Task> entity = new HttpEntity<Task>(t, headers);
 
-		ResponseEntity<User> response = restTemplate.exchange(
-				createURLWithPort("/users"),
+		ResponseEntity<Task> response = restTemplate.exchange(
+				createURLWithPort("/tasks"),
 				HttpMethod.POST, 
 				entity, 
-				User.class);
+				Task.class);
 
-		User actualUser = response.getBody();
-		Assert.assertNotNull(actualUser);
+		Task actualTask = response.getBody();
+		Assert.assertNotNull(actualTask);
 	}
 	
 	private String createURLWithPort(String uri) {

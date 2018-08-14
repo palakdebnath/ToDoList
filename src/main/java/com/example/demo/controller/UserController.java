@@ -20,6 +20,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@GetMapping("/greeting")
+	public String getHello() {
+		return "Hello";
+	}
+	
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
 		return userService.createUser(user);

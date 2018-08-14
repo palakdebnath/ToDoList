@@ -32,6 +32,16 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "assignedUser")
 	private Set<Task> taskSet;
 
+	public User() {}
+	public User(Long userId, String userName, String firstName, String lastName, Set<Task> taskSet) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.taskSet = taskSet;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
